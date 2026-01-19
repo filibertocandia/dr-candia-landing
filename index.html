@@ -12,15 +12,11 @@
     <meta property="og:title" content="Dr. Filiberto Candia García - Investigador SNII">
     <meta property="og:description" content="Investigador mexicano con 105 publicaciones y 6 patentes IMPI. SNII Nivel I, BUAP.">
     
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Dr. Filiberto Candia García - Investigador SNII">
-    
     <title>Dr. Filiberto Candia García - Investigador SNII Nivel I | BUAP</title>
     
     <style>
         /* ============================================
-           VARIABLES Y RESET
+           VARIABLES Y TEMAS
            ============================================ */
         :root {
             --primary: #003366;
@@ -32,7 +28,18 @@
             --text-gray: #666666;
             --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --secondary: #ef4444;
+            --accent: #fbbf24;
+            --bg-light: #0f172a;
+            --bg-white: #1e293b;
+            --text-dark: #f1f5f9;
+            --text-gray: #94a3b8;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
         
         * {
@@ -50,6 +57,45 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--bg-light);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* ============================================
+           MODO OSCURO TOGGLE
+           ============================================ */
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-white);
+            border: 1px solid var(--primary);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+
+        /* ============================================
+           ANIMACIONES DE SCROLL
+           ============================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         /* ============================================
@@ -64,18 +110,6 @@
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,96L48,90.7C96,85,192,75,288,69.3C384,64,480,64,576,74.7C672,85,768,107,864,106.7C960,107,1056,85,1152,80C1248,75,1344,85,1392,90.7L1440,96L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom;
-            background-size: cover;
-            opacity: 0.5;
-        }
-        
         .hero-content {
             position: relative;
             z-index: 1;
@@ -87,21 +121,6 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
-        }
-        
-        .hero-affiliation {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
         
         .stats-grid {
@@ -109,8 +128,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease 0.6s backwards;
+            margin: 2rem auto 0;
         }
         
         .stat-card {
@@ -119,12 +137,6 @@
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition);
-        }
-        
-        .stat-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
         }
         
         .stat-number {
@@ -132,27 +144,10 @@
             font-weight: 700;
             color: var(--accent);
             display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         /* ============================================
-           CONTAINER Y SECCIONES
+           CARDS Y MULTIMEDIA
            ============================================ */
         .container {
             max-width: 1200px;
@@ -164,46 +159,17 @@
             padding: 80px 20px;
         }
         
-        section:nth-child(even) {
-            background: var(--bg-white);
-        }
-        
         .section-title {
             text-align: center;
             color: var(--primary);
             font-size: 2.5rem;
-            font-weight: 700;
             margin-bottom: 3rem;
-            position: relative;
-            padding-bottom: 1rem;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        
-        /* ============================================
-           CARDS
-           ============================================ */
         .grid {
             display: grid;
             gap: 2rem;
-        }
-        
-        .grid-2 {
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-        
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
         
         .card {
@@ -216,12 +182,16 @@
             flex-direction: column;
         }
         
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
         .card-media {
             margin: -2rem -2rem 1.5rem -2rem;
             border-radius: 12px 12px 0 0;
             overflow: hidden;
             height: 200px;
-            background: var(--bg-light);
         }
         
         .card-media img {
@@ -233,530 +203,69 @@
         .audio-player {
             margin-top: auto;
             padding-top: 1.5rem;
-            width: 100%;
         }
         
         .audio-player audio {
             width: 100%;
             height: 35px;
         }
-        
+
         .audio-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-gray);
             margin-bottom: 0.5rem;
             display: block;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .card h3, .card h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .card p {
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-        
-        /* ============================================
-           PUBLICACIONES
-           ============================================ */
-        .publication-item {
-            border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .publication-item h4 {
-            color: var(--primary);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .publication-meta {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-        
-        .publication-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .publication-link:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-        
-        /* ============================================
-           PATENTES
-           ============================================ */
+
         .patent-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        .patent-status {
-            color: var(--text-gray);
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .patent-status.granted {
-            color: #10b981;
-            font-weight: 600;
-        }
-        
-        /* ============================================
-           MULTIMEDIA / VIDEOS
-           ============================================ */
-        .multimedia-header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .multimedia-header h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .multimedia-header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-        
-        .multimedia-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .multimedia-stat {
-            text-align: center;
-        }
-        
-        .multimedia-stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent);
-            display: block;
-        }
-        
-        .multimedia-stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-        
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .video-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .video-thumb {
-            height: 200px;
-            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .video-thumb.patent-1 { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
-        .video-thumb.patent-2 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
-        .video-thumb.patent-3 { background: linear-gradient(135deg, #059669, #10b981); }
-        .video-thumb.patent-4 { background: linear-gradient(135deg, #0891b2, #06b6d4); }
-        .video-thumb.patent-5 { background: linear-gradient(135deg, #d97706, #f59e0b); }
-        .video-thumb.patent-6 { background: linear-gradient(135deg, #dc2626, #ef4444); }
-        .video-thumb.paper-1 { background: linear-gradient(135deg, #4f46e5, #6366f1); }
-        .video-thumb.paper-2 { background: linear-gradient(135deg, #0d9488, #14b8a6); }
-        .video-thumb.paper-3 { background: linear-gradient(135deg, #c026d3, #d946ef); }
-        
-        .play-button {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .video-duration {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
             padding: 0.4rem 0.8rem;
+            background: var(--primary);
+            color: white;
             border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            width: fit-content;
         }
-        
-        .video-content {
+
+        .publication-item {
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            background: var(--bg-white);
             padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--shadow);
         }
-        
-        .video-category {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-        
-        .video-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-        }
-        
-        .video-meta {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .video-btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .video-btn:hover {
-            background: #002244;
-        }
-        
-        /* ============================================
-           MODAL
-           ============================================ */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-        
-        .modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: modalSlideIn 0.3s ease;
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .modal-header {
-            padding: 2rem;
-            border-bottom: 2px solid var(--bg-light);
-        }
-        
-        .modal-header h3 {
-            color: var(--primary);
-            font-size: 1.5rem;
-            padding-right: 40px;
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            width: 40px;
-            height: 40px;
-            background: var(--bg-light);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            transition: var(--transition);
-        }
-        
-        .modal-close:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .modal-body {
-            padding: 2rem;
-        }
-        
-        .prompt-content {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 8px;
-            white-space: pre-wrap;
-            line-height: 1.8;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 2px solid var(--bg-light);
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .btn {
-            flex: 1;
-            padding: 0.75rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .btn:hover {
-            background: #002244;
-        }
-        
-        .btn-secondary {
-            background: #666;
-        }
-        
-        .btn-secondary:hover {
-            background: #444;
-        }
-        
-        /* ============================================
-           INSTRUCTIONS BOX
-           ============================================ */
-        .instructions-box {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-top: 3rem;
-            text-align: center;
-        }
-        
-        .instructions-box p {
-            line-height: 1.8;
-        }
-        
-        .instructions-box strong {
-            font-weight: 700;
-        }
-        
-        .instructions-box a {
-            color: var(--primary);
-            text-decoration: underline;
-            font-weight: 700;
-        }
-        
-        /* ============================================
-           IMPACTO
-           ============================================ */
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .impact-card {
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .impact-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .impact-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .impact-label {
-            color: var(--text-gray);
-        }
-        
-        /* ============================================
-           LINKS Y CONTACTO
-           ============================================ */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .link-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: var(--bg-light);
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        
-        .link-item:hover {
-            background: #e0e7ff;
-        }
-        
-        .link-icon {
-            font-size: 2rem;
-        }
-        
-        .link-text a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .link-text a:hover {
+
+        .publication-link {
             color: var(--secondary);
-            text-decoration: underline;
+            text-decoration: none;
+            font-weight: 700;
         }
-        
-        .link-description {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-        
+
         /* ============================================
            FOOTER
            ============================================ */
         footer {
-            background: #002244;
+            background: var(--primary);
             color: white;
-            padding: 3rem 20px;
+            padding: 40px 20px;
             text-align: center;
-        }
-        
-        footer p {
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-        
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
+    <button class="theme-switch" id="themeToggle" title="Cambiar Tema">🌓</button>
+
+    <header class="hero">
         <div class="hero-content">
             <h1>Dr. Filiberto Candia García</h1>
-            <p class="hero-subtitle">Profesor Investigador Asociado C | SNII Nivel I</p>
-            <p class="hero-affiliation">Facultad de Ingeniería | Benemérita Universidad Autónoma de Puebla</p>
+            <p class="hero-subtitle">Investigador SNII Nivel I | Innovación y Ciencia</p>
+            <p class="hero-affiliation">Benemérita Universidad Autónoma de Puebla (BUAP)</p>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -768,631 +277,171 @@
                     <span class="stat-label">Patentes IMPI</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">SNII</span>
-                    <span class="stat-label">Nivel I</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">25+</span>
-                    <span class="stat-label">Años Experiencia</span>
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Videos de Divulgación</span>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- SOBRE MÍ -->
-    <section id="about">
+    <section id="patents">
         <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
-            <div class="card">
-                <p>El Dr. Filiberto Candia García es un distinguido investigador mexicano con más de 25 años de experiencia en ingeniería mecánica, diseño industrial y educación superior. Su trabajo se centra en la innovación tecnológica aplicada a problemas reales de la industria y la sociedad.</p>
-                
-                <p style="margin-top: 1.5rem;">Como miembro del Sistema Nacional de Investigadores (SNII) Nivel I y profesor en la BUAP, ha formado a numerosas generaciones de ingenieros y ha contribuido significativamente al desarrollo tecnológico de México a través de sus <strong>6 patentes registradas ante el IMPI</strong> y más de <strong>105 publicaciones académicas</strong>.</p>
-                
-                <p style="margin-top: 1.5rem;"><strong>Áreas de Especialización:</strong> Mecánica de Sólidos, Diseño Industrial, Tecnología Educativa, Innovación Curricular, Sistemas Estructurales, Desarrollo de Prototipos, Energías Renovables, Biomecánica</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRAYECTORIA ACADÉMICA -->
-    <section id="timeline" style="background: white;">
-        <div class="container">
-            <h2 class="section-title">Trayectoria Académica</h2>
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3>📚 Formación Académica</h3>
-                    <p><strong>Doctorado en Ingeniería</strong><br>Especialidad en Mecánica de Materiales y Estructuras</p>
-                    <p style="margin-top: 0.75rem;"><strong>Maestría en Ingeniería</strong><br>Área de Diseño Mecánico</p>
-                    <p style="margin-top: 0.75rem;"><strong>Ingeniería Mecánica</strong><br>Benemérita Universidad Autónoma de Puebla</p>
-                </div>
-                <div class="card">
-                    <h3>🏛️ Posición Actual</h3>
-                    <p><strong>Profesor Investigador Asociado C</strong><br>Facultad de Ingeniería, BUAP (2000 - Presente)</p>
-                    <p style="margin-top: 1rem;"><strong>Miembro del Sistema Nacional de Investigadores</strong><br>CONAHCYT - CVU: 264231<br>Nivel I</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PUBLICACIONES DESTACADAS -->
-    <section id="publications">
-        <div class="container">
-            <h2 class="section-title">Publicaciones Destacadas</h2>
-            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem;">
-                105 publicaciones en revistas indexadas y congresos internacionales
-            </p>
-            
+            <h2 class="section-title reveal">Patentes e Innovación Multimedia</h2>
             <div class="grid">
-                <div class="publication-item">
-                    <h4>Enhanced Structural, Optical, Electrical, and Dielectric Properties of PVA/Cu Nanocomposites</h4>
-                    <p class="publication-meta">
-                        Materials, Vol. 18, No. 9, 2087, 2025<br>
-                        Coautores: M.A. Alaniz Hernández, C. Ascencio Hurtado, R.C. Ambrosio Lázaro
-                    </p>
-                    <a href="https://www.mdpi.com/1996-1944/18/9/2087" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h4>Agile Stage-Gate Approach for Design, Integration, and Testing of a 1U CubeSat</h4>
-                    <p class="publication-meta">
-                        Aerospace, Vol. 11, No. 4, 324, 2024<br>
-                        Coautores: Enrique Rafael García Sánchez, Héctor Simón Vargas Martínez
-                    </p>
-                    <a href="https://www.mdpi.com/2226-4310/11/4/324" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h4>Diseño de un modelo curricular E-learning, utilizando una metodología activa participativa</h4>
-                    <p class="publication-meta">
-                        RIDE Revista Iberoamericana para la Investigación y el Desarrollo Educativo, Vol. 7, No. 13, 2016<br>
-                        Autor Único: Filiberto Candia García
-                    </p>
-                    <a href="https://www.scielo.org.mx/scielo.php?pid=S2007-74672016000200147&script=sci_arttext" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h4>La planeación académica en los nuevos modelos curriculares e-learning</h4>
-                    <p class="publication-meta">
-                        RIDE. Revista Iberoamericana para la Investigación y el Desarrollo Educativo, Vol. 13, No. 26, 2023
-                    </p>
-                    <a href="https://doi.org/10.23913/ride.v13i26.1422" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h4>La mecánica de sólidos como unidad de competencia del currículo de los programas de estudio en Ingeniería</h4>
-                    <p class="publication-meta">
-                        RIDE. Revista Iberoamericana para la Investigación y el Desarrollo Educativo, Vol. 8, No. 16, 2018
-                    </p>
-                    <a href="https://doi.org/10.23913/ride.v8i16.369" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-                
-                <div class="publication-item">
-                    <h4>Reflections on Professional Vocation to Move Towards National Coverage of Lifelong Learning</h4>
-                    <p class="publication-meta">
-                        RIDE. Revista Iberoamericana para la Investigación y el Desarrollo Educativo, Vol. 10, No. 20, 2020
-                    </p>
-                    <a href="https://doi.org/10.23913/ride.v10i20.629" class="publication-link" target="_blank">🔗 Ver publicación</a>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 3rem;">
-                <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" 
-                   style="color: var(--primary); font-weight: 600; font-size: 1.1rem; text-decoration: none;">
-                    📖 Ver todas las publicaciones en Google Scholar →
-                </a>
-            </p>
-        </div>
-    </section>
-
-    <!-- PATENTES IMPI -->
-    <section id="patents" style="background: white;">
-        <div class="container">
-            <h2 class="section-title">Patentes IMPI</h2>
-            
-            <div class="grid grid-3">
-                <div class="card">
+                <!-- Patente 1 -->
+                <div class="card reveal">
                     <div class="card-media">
-                        <img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D Estructural">
+                        <img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D">
                     </div>
                     <span class="patent-badge">MX427157B</span>
-                    <h4>Modelo impreso en 3D para el estudio de la respuesta dinámica de sistemas estructurales de 1 GDL ante excitaciones armónicas</h4>
-                    <p class="patent-status granted">✅ Patente concedida • Agosto 2025</p>
+                    <h4>Modelo 3D: Respuesta Dinámica Estructural</h4>
+                    <p>Estudio de sistemas de 1 GDL ante excitaciones armónicas. Patente concedida 2025.</p>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls>
-                            <source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav">
-                            Tu navegador no soporta el elemento de audio.
-                        </audio>
+                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
                     </div>
                 </div>
-                
-                <div class="card">
+
+                <!-- Patente 2 -->
+                <div class="card reveal">
                     <div class="card-media">
-                        <img src="media/tiktok_cover_ortesis.png" alt="Ortesis Inteligente">
+                        <img src="media/tiktok_cover_ortesis.png" alt="Ortesis">
                     </div>
                     <span class="patent-badge">MX/a/2023/008361</span>
-                    <h4>Ortesis para fortalecer la pinza de agarre tridimensional</h4>
-                    <p class="patent-status">⏳ En trámite • Julio 2023</p>
-                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.5rem;">
-                        Coautores: Torres Flores, C., Contreras Lima, J., Rodríguez Mora, J.I., Morales Sánchez, M.A.
-                    </p>
+                    <h4>Ortesis Inteligente de Agarre</h4>
+                    <p>Fortalecimiento de la pinza de agarre tridimensional para rehabilitación médica.</p>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls>
-                            <source src="media/tiktok_audio_ortesis.wav" type="audio/wav">
-                            Tu navegador no soporta el elemento de audio.
-                        </audio>
+                        <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <span class="patent-badge">MX/a/2022/011266</span>
-                    <h4>Trilladora de semilla de alfalfa</h4>
-                    <p class="patent-status">⏳ En trámite • Septiembre 2022</p>
-                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.5rem;">
-                        Coautores: Vivaldo de la Cruz, I., Flores Méndez, J., Castillo Flores, M., Ambrosio Lázaro, R.C.
-                    </p>
-                </div>
-                
-                <div class="card">
+
+                <!-- Patente 3 -->
+                <div class="card reveal">
                     <div class="card-media">
                         <img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica">
                     </div>
                     <span class="patent-badge">MX/a/2021/015890</span>
-                    <h4>Torre motriz eólica con volante de inercia</h4>
-                    <p class="patent-status">⏳ En trámite • Diciembre 2021</p>
-                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.5rem;">
-                        Coautores: Vivaldo de la Cruz, I., Flores Méndez, J., Castillo Flores, M., Ambrosio Lázaro, R.C.
-                    </p>
+                    <h4>Torre Eólica con Volante de Inercia</h4>
+                    <p>Almacenamiento de energía cinética para suministro eléctrico constante 24/7.</p>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls>
-                            <source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav">
-                            Tu navegador no soporta el elemento de audio.
-                        </audio>
+                        <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
                     </div>
                 </div>
-                
-                <div class="card">
+
+                <!-- Patente 4 -->
+                <div class="card reveal">
+                    <div class="card-media">
+                        <img src="media/tiktok_cover_trilladora.png" alt="Trilladora">
+                    </div>
+                    <span class="patent-badge">MX/a/2022/011266</span>
+                    <h4>Trilladora de Semilla de Alfalfa</h4>
+                    <p>Optimización del proceso de cosecha para el sector agrícola nacional.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_trilladora.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+
+                <!-- Patente 5 -->
+                <div class="card reveal">
+                    <div class="card-media">
+                        <img src="media/tiktok_cover_avena.png" alt="Avena">
+                    </div>
                     <span class="patent-badge">MX/a/2020/010347</span>
-                    <h4>Pastillas de avena para preparar bebida instantánea</h4>
-                    <p class="patent-status">⏳ En trámite • Septiembre 2020</p>
-                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.5rem;">
-                        Coautores: Cabrera Flores, A.A., Santacruz Vázquez, C., Toxqui López, S., Santacruz Vázquez, V.
-                    </p>
+                    <h4>Pastillas de Avena Instantánea</h4>
+                    <p>Innovación alimentaria para nutrición rápida y saludable en entornos urbanos.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_avena.wav" type="audio/wav"></audio>
+                    </div>
                 </div>
-                
-                <div class="card">
+
+                <!-- Patente 6 -->
+                <div class="card reveal">
+                    <div class="card-media">
+                        <img src="media/tiktok_cover_cubicadora.png" alt="Cubicadora">
+                    </div>
                     <span class="patent-badge">MX/a/2020/003169</span>
-                    <h4>Equipo para el cubicado de alimentos</h4>
-                    <p class="patent-status">⏳ En trámite • Marzo 2020</p>
-                    <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.5rem;">
-                        Coautores: Santacruz Vázquez, C., Caltitla Auroza, F., Ramos González, J.R., Santacruz Vázquez, V., Galindo López, V.
-                    </p>
+                    <h4>Cubicadora de Alimentos Industrial</h4>
+                    <p>Tecnología de precisión para reducir el desperdicio alimentario en gran escala.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_cubicadora.wav" type="audio/wav"></audio>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- DIVULGACIÓN CIENTÍFICA / MULTIMEDIA -->
-    <section id="multimedia">
+    <section id="publications" style="background: var(--bg-light);">
         <div class="container">
-            <h2 class="section-title">📱 Divulgación Científica</h2>
-            
-            <div class="multimedia-header">
-                <h3>15 Videos de Divulgación Científica</h3>
-                <p>Contenido generado con IA para TikTok, Instagram Reels y YouTube Shorts</p>
-                
-                <div class="multimedia-stats">
-                    <div class="multimedia-stat">
-                        <span class="multimedia-stat-number">6</span>
-                        <span class="multimedia-stat-label">Patentes</span>
-                    </div>
-                    <div class="multimedia-stat">
-                        <span class="multimedia-stat-number">9</span>
-                        <span class="multimedia-stat-label">Papers RIDE</span>
-                    </div>
-                    <div class="multimedia-stat">
-                        <span class="multimedia-stat-number">100%</span>
-                        <span class="multimedia-stat-label">Con IA</span>
-                    </div>
+            <h2 class="section-title reveal">Publicaciones Destacadas</h2>
+            <div class="grid">
+                <div class="publication-item reveal">
+                    <h4>Enhanced Structural, Optical, Electrical, and Dielectric Properties of PVA/Cu Nanocomposites</h4>
+                    <p>Materials, 2025. Investigación en nanotecnología y nuevos materiales.</p>
+                    <a href="https://www.mdpi.com/1996-1944/18/9/2087" class="publication-link" target="_blank">🔗 Ver en MDPI</a>
+                </div>
+                <div class="publication-item reveal">
+                    <h4>Agile Stage-Gate Approach for 1U CubeSat</h4>
+                    <p>Aerospace, 2024. Metodologías ágiles aplicadas a la ingeniería aeroespacial.</p>
+                    <a href="https://www.mdpi.com/2226-4310/11/4/324" class="publication-link" target="_blank">🔗 Ver en MDPI</a>
+                </div>
+                <div class="publication-item reveal">
+                    <h4>Modelo Curricular E-learning</h4>
+                    <p>RIDE, 2016. Innovación en educación digital y metodologías activas.</p>
+                    <a href="https://www.scielo.org.mx/scielo.php?pid=S2007-74672016000200147&script=sci_arttext" class="publication-link" target="_blank">🔗 Ver en SciELO</a>
                 </div>
             </div>
-            
-            <div class="video-grid" id="videosGrid">
-                <!-- Los videos se cargarán con JavaScript -->
-            </div>
-            
-            <div class="instructions-box">
-                <p><strong>📝 Instrucciones:</strong> Haz clic en cualquier video para ver el prompt completo de InVideo AI. Copia el prompt y úsalo en <a href="https://ai.invideo.io" target="_blank">ai.invideo.io</a> para generar el video automáticamente.</p>
-            </div>
+            <p style="text-align: center; margin-top: 3rem;" class="reveal">
+                <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" style="color: var(--primary); font-weight: 700;">Ver 105 publicaciones en Google Scholar →</a>
+            </p>
         </div>
     </section>
 
-    <!-- IMPACTO ACADÉMICO -->
-    <section id="impact" style="background: white;">
-        <div class="container">
-            <h2 class="section-title">Impacto Académico</h2>
-            
-            <div class="impact-grid">
-                <div class="impact-card card">
-                    <div class="impact-icon">📚</div>
-                    <span class="impact-number">105+</span>
-                    <span class="impact-label">Publicaciones Científicas</span>
-                </div>
-                
-                <div class="impact-card card">
-                    <div class="impact-icon">🎓</div>
-                    <span class="impact-number">500+</span>
-                    <span class="impact-label">Estudiantes Formados</span>
-                </div>
-                
-                <div class="impact-card card">
-                    <div class="impact-icon">💡</div>
-                    <span class="impact-number">6</span>
-                    <span class="impact-label">Patentes Registradas</span>
-                </div>
-                
-                <div class="impact-card card">
-                    <div class="impact-icon">🏆</div>
-                    <span class="impact-number">SNII</span>
-                    <span class="impact-label">Nivel I</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTO Y LINKS -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contacto y Enlaces</h2>
-            
-            <div class="links-grid">
-                <div class="card">
-                    <h4 style="margin-bottom: 1.5rem;">🏛️ Institución</h4>
-                    <p><strong>Benemérita Universidad Autónoma de Puebla</strong><br>
-                    Facultad de Ingeniería<br>
-                    Ciudad Universitaria, Puebla, México</p>
-                </div>
-                
-                <div class="card">
-                    <h4 style="margin-bottom: 1.5rem;">🔗 Enlaces Académicos</h4>
-                    <div class="link-item" style="margin-bottom: 0.75rem;">
-                        <span class="link-icon">🆔</span>
-                        <div class="link-text">
-                            <a href="https://orcid.org/0000-0002-7153-2202" target="_blank">ORCID iD</a><br>
-                            <span class="link-description">0000-0002-7153-2202</span>
-                        </div>
-                    </div>
-                    
-                    <div class="link-item" style="margin-bottom: 0.75rem;">
-                        <span class="link-icon">📖</span>
-                        <div class="link-text">
-                            <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank">Google Scholar</a><br>
-                            <span class="link-description">Perfil completo de publicaciones</span>
-                        </div>
-                    </div>
-                    
-                    <div class="link-item">
-                        <span class="link-icon">🎓</span>
-                        <div class="link-text">
-                            <strong>CVU CONAHCYT:</strong> 264231
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODAL PARA PROMPTS -->
-    <div id="modalPrompt" class="modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div class="modal-header">
-                <h3 id="modalTitle"></h3>
-            </div>
-            <div class="modal-body">
-                <div class="prompt-content" id="modalBody"></div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" onclick="copyPrompt()">📋 Copiar Prompt</button>
-                <button class="btn btn-secondary" onclick="closeModal()">Cerrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Dr. Filiberto Candia García. Todos los derechos reservados.</p>
-            <p style="margin-top: 1rem; opacity: 0.8;">Sistema Nacional de Investigadores | Benemérita Universidad Autónoma de Puebla</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">Landing page generado con <a href="#">Prompt Maestro V4</a> + Claude AI</p>
-        </div>
+        <p>&copy; 2026 Dr. Filiberto Candia García | Divulgación Científica e Innovación</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">Desarrollado para la aventura inclusiva de la ciencia.</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // ============================================
-        // DATOS DE VIDEOS
-        // ============================================
-        const videos = [
-            {
-                id: 1,
-                cat: 'Patente',
-                class: 'patent-1',
-                title: '🗝️ Modelo 3D: La Ingeniería que Predice el Futuro de Edificios',
-                dur: '70s',
-                prompt: `Título: "🗝️ Modelo 3D: La Ingeniería que Predice el Futuro de Edificios"
-
-Hook (0-10s):
-¿Sabías que ahora podemos predecir cómo se comportará un edificio ante un terremoto ANTES de construirlo? 🌊 Un investigador mexicano ha revolucionado la ingeniería estructural con tecnología 3D.
-
-Desarrollo (10-60s):
-🔌 Punto 1: El Dr. Filiberto Candia creó un modelo impreso en 3D que simula vibraciones reales en estructuras
-🔬 Punto 2: Su patente MX427157B permite estudiar sistemas de 1 grado de libertad con excitaciones armónicas
-💡 Punto 3: Esto significa que podemos diseñar edificios más seguros a una fracción del costo tradicional
-🚀 Punto 4: La tecnología une impresión 3D + mecánica estructural + análisis dinámico
-
-Cierre (60-70s):
-¡La próxima generación de edificios será más segura gracias a la innovación mexicana! 🇲🇽 ¿Te imaginas diseñar estructuras desde tu computadora?
-👉 Sígueme para más innovaciones de ingeniería mexicana
-
-Hashtags: #IngenieríaMexicana #Impresión3D #InnovaciónMXN #CienciaYTecnología #BUAP #IngenieríaCivil #Sismología #TecnologíaEducativa`
-            },
-            {
-                id: 2,
-                cat: 'Patente',
-                class: 'patent-2',
-                title: '🦾 Ortesis Inteligente: Recupera el Poder de tu Mano',
-                dur: '65s',
-                prompt: `Título: "🦾 Ortesis Inteligente: Recupera el Poder de tu Mano"
-
-Hook (0-10s):
-¿Perdiste fuerza en tu mano por una lesión? 🤚 Una innovación 100% mexicana está cambiando la vida de miles de personas con una ortesis revolucionaria.
-
-Desarrollo (10-55s):
-🔌 Punto 1: Desarrollada en la BUAP, esta ortesis tipo pistola fortalece la pinza de agarre tridimensional
-💪 Punto 2: Permite terapia de rehabilitación progresiva y medible para lesiones de mano y muñeca
-🎯 Punto 3: Patente MX/a/2023/008361 - tecnología accesible para centros de rehabilitación en México
-🌟 Punto 4: Colaboración BUAP + empresa privada = innovación con impacto social real
-
-Cierre (55-65s):
-¡La ingeniería mexicana al servicio de la salud! 💚 Miles de pacientes podrían recuperar movilidad.
-👉 Sígueme para más tecnología médica mexicana
-
-Hashtags: #Ortesis #TecnologíaMédica #InnovaciónSocial #Rehabilitación #BUAP #IngenieríaBioméica #SaludMéxico #CienciaMexicana`
-            },
-            {
-                id: 3,
-                cat: 'Patente',
-                class: 'patent-3',
-                title: '🌾 Trilladora de Alfalfa: Agricultura de Precisión Made in Mexico',
-                dur: '68s',
-                prompt: `Título: "🌾 Trilladora de Alfalfa: Agricultura de Precisión Made in Mexico"
-
-Hook (0-10s):
-🚜 ¿Cansado de perder semillas de alfalfa en la cosecha? Una máquina 100% mexicana está revolucionando la agricultura con eficiencia del 95%.
-
-Desarrollo (10-58s):
-🔌 Punto 1: Diseñada específicamente para semilla de alfalfa - cultivo clave en ganadería mexicana
-⚙️ Punto 2: Patente MX/a/2022/011266 optimiza la separación de semilla sin dañarla
-💰 Punto 3: Reduce pérdidas del 30% al 5% - incremento directo en ganancias del agricultor
-🌱 Punto 4: Tecnología desarrollada por BUAP pensando en pequeños y medianos productores
-
-Cierre (58-68s):
-¡La ingeniería agrícola mexicana compitiendo con tecnología internacional! 🇲🇽🌾
-👉 Dale like si crees en la innovación del campo mexicano
-
-Hashtags: #AgriculturaDePrecisión #InnovaciónAgrícola #CampoMexicano #Alfalfa #TecnologíaAgropecuaria #BUAP #IngenieríaRural #MéxicoInnovador`
-            },
-            {
-                id: 4,
-                cat: 'Patente',
-                class: 'patent-4',
-                title: '💨 Torre Eólica con Volante: Energía Renovable 24/7',
-                dur: '72s',
-                prompt: `Título: "💨 Torre Eólica con Volante: Energía Renovable 24/7"
-
-Hook (0-10s):
-❌ El problema de la energía eólica: cuando no hay viento, no hay energía. ✅ Hasta ahora. Un ingeniero mexicano resolvió este problema milenario.
-
-Desarrollo (10-62s):
-🔌 Punto 1: Torre motriz eólica con volante de inercia - patente MX/a/2021/015890
-🔋 Punto 2: El volante almacena energía cinética cuando HAY viento y la libera cuando NO HAY
-⚡ Punto 3: Resultado: energía constante 24/7 sin necesidad de baterías caras
-🌍 Punto 4: Solución económica para comunidades rurales de México - energía limpia accesible
-
-Cierre (62-72s):
-¡México innovando en energías renovables! 🇲🇽💚 El futuro energético está en nuestras manos.
-👉 Comenta: ¿Tu comunidad necesita esta tecnología?
-
-Hashtags: #EnergíaRenovable #EnergíaEólica #InnovaciónVerde #MéxicoSustentable #EnergíaLimpia #BUAP #VolanteDeInercia #TecnologíaVerde`
-            },
-            {
-                id: 5,
-                cat: 'Patente',
-                class: 'patent-5',
-                title: '🥣 Avena Instantánea: Nutrición Express para México',
-                dur: '63s',
-                prompt: `Título: "🥣 Avena Instantánea: Nutrición Express para México"
-
-Hook (0-10s):
-⏰ ¿5 minutos para un desayuno nutritivo? Investigadores de la BUAP crearon pastillas de avena que revolucionarán la alimentación mexicana. 🇲🇽
-
-Desarrollo (10-53s):
-🔌 Punto 1: Pastillas de avena para preparar bebida instantánea - Patente MX/a/2020/010347
-🥤 Punto 2: Solo agregar agua caliente: bebida nutritiva lista en segundos
-💪 Punto 3: Conserva todos los nutrientes de la avena + fortificación adicional posible
-🎯 Punto 4: Pensado para estudiantes, trabajadores y familias mexicanas con poco tiempo
-
-Cierre (53-63s):
-¡Ciencia mexicana mejorando la nutrición nacional! 🍽️ Desayuno saludable en tu bolsillo.
-👉 Etiqueta a quien necesita desayunos rápidos y sanos
-
-Hashtags: #NutriciónMexicana #AvenaInstantánea #AlimentaciónSaludable #InnovaciónAlimentaria #BUAP #Desayuno #VidaSana #CienciaParaTodos`
-            },
-            {
-                id: 6,
-                cat: 'Patente',
-                class: 'patent-6',
-                title: '📦 Cubicadora de Alimentos: Tecnología contra el Desperdicio',
-                dur: '67s',
-                prompt: `Título: "📦 Cubicadora de Alimentos: Tecnología contra el Desperdicio"
-
-Hook (0-10s):
-🗑️ México desperdicia 20 millones de toneladas de comida al año. Una máquina de la BUAP está combatiendo esto con ingeniería de precisión.
-
-Desarrollo (10-57s):
-🔌 Punto 1: Equipo para cubicado de alimentos - Patente MX/a/2020/003169
-📏 Punto 2: Corta y porciona alimentos en cubos perfectos - minimiza desperdicio en preparación
-🏭 Punto 3: Útil en comedores industriales, hospitales, escuelas - donde se alimentan cientos diario
-💡 Punto 4: Estandariza porciones = mejor control nutricional + menos comida a la basura
-
-Cierre (57-67s):
-¡Ingeniería mexicana contra el hambre y el desperdicio! 🇲🇽🍽️ Tecnología con propósito social.
-👉 Comparte si quieres ver menos comida desperdiciada
-
-Hashtags: #CeroDesperdicio #TecnologíaAlimentaria #SeguridadAlimentaria #InnovaciónSocial #BUAP #SustentabilidadMX #IngenieríaIndustrial #MéxicoConsciente`
-            },
-            {
-                id: 7,
-                cat: 'Paper RIDE',
-                class: 'paper-1',
-                title: '🎓 Tecnología Educativa: Detonador de Productividad Académica',
-                dur: '68s',
-                prompt: `Título: "🎓 Tecnología Educativa: Detonador de Productividad Académica"
-
-Hook (0-10s):
-¿Sabías que la tecnología educativa puede multiplicar por 3 la productividad académica? 📈 Un estudio de la BUAP revela cómo.
-
-Desarrollo (10-58s):
-🔌 Punto 1: Investigación RIDE 2025 demuestra impacto de tecnología educativa en publicaciones de alto impacto
-📊 Punto 2: Profesores que integran TIC tienen 3.2x más producción científica que quienes no las usan
-💡 Punto 3: Herramientas clave: plataformas colaborativas, gestores de referencias, análisis de datos
-🚀 Punto 4: No se trata de tecnología por tecnología, sino de estrategia pedagógica bien diseñada
-
-Cierre (58-68s):
-¡La tecnología educativa no es el futuro, es el PRESENTE! 📱 ¿Tu institución la está usando bien?
-👉 Comenta qué herramientas tecnológicas usas en tu investigación
-
-Hashtags: #TecnologíaEducativa #ProductividadAcadémica #RIDE #BUAP #InnovaciónEducativa #CienciaYEducación #InvestigaciónEducativa #TIC`
-            },
-            {
-                id: 8,
-                cat: 'Paper RIDE',
-                class: 'paper-2',
-                title: '📚 Exclusión vs Inclusión: El Dilema Curricular',
-                dur: '70s',
-                prompt: `Título: "📚 Exclusión vs Inclusión: El Dilema Curricular"
-
-Hook (0-10s):
-¿Qué asignaturas deben estar en un plan de estudios de ingeniería? 🤔 La respuesta determina el futuro de miles de estudiantes.
-
-Desarrollo (10-60s):
-🔌 Punto 1: Estudio RIDE 2024 analiza criterios para incluir/excluir asignaturas en actualización curricular
-📊 Punto 2: El 43% de materias en planes viejos ya no son relevantes, pero se mantienen por "tradición"
-💡 Punto 3: Propone metodología basada en: demanda laboral + avances tecnológicos + competencias del futuro
-🎯 Punto 4: Casos de éxito: universidades que actualizan cada 3 años vs cada 10 años (empleabilidad 67% vs 41%)
-
-Cierre (60-70s):
-¡Los planes de estudio deben evolucionar al ritmo de la sociedad! 🌍 ¿Tu carrera necesita actualización?
-👉 Comparte si crees que tu plan de estudios está desactualizado
-
-Hashtags: #EducaciónSuperior #PlanesDe Estudio #InnovaciónCurricular #RIDE #BUAP #Empleabilidad #FuturoLaboral #IngenieríaModerna`
-            },
-            {
-                id: 9,
-                cat: 'Paper RIDE',
-                class: 'paper-3',
-                title: '💻 Competencias Digitales Post-COVID: La Nueva Normalidad',
-                dur: '72s',
-                prompt: `Título: "💻 Competencias Digitales Post-COVID: La Nueva Normalidad"
-
-Hook (0-10s):
-La pandemia COVID-19 transformó para siempre la educación. 🌍 Pero, ¿realmente mejoraron las competencias digitales?
-
-Desarrollo (10-62s):
-🔌 Punto 1: Investigación RIDE 2023 con 1,200+ estudiantes universitarios mexicanos durante y post-pandemia
-📊 Punto 2: Paradoja descubierta: más uso de tecnología ≠ mejores competencias digitales
-💡 Punto 3: El 68% usa tecnología diario, pero solo 32% tiene competencias avanzadas (análisis de datos, programación)
-🎯 Punto 4: Competencias superficiales (redes sociales) vs profundas (pensamiento computacional, ciudadanía digital)
-
-Cierre (62-72s):
-¡No confundamos "uso" con "dominio"! 🧠 Las competencias digitales del futuro requieren educación formal.
-👉 ¿Tú tienes competencias digitales superficiales o profundas? Vota 👇
-
-Hashtags: #CompetenciasDigitales #COVID19 #EducaciónDigital #RIDE #BUAP #TransformaciónDigital #AlfabetizaciónDigital #Pandemia`
+        // MODO OSCURO
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
-        ];
-        
-        // ============================================
-        // RENDERIZAR VIDEOS
-        // ============================================
-        function renderVideos() {
-            const grid = document.getElementById('videosGrid');
-            
-            videos.forEach(v => {
-                const card = document.createElement('div');
-                card.className = 'video-card';
-                card.onclick = () => showPrompt(v.id);
-                
-                card.innerHTML = `
-                    <div class="video-thumb ${v.class}">
-                        <div class="play-button">▶</div>
-                        <div class="video-duration">${v.dur}</div>
-                    </div>
-                    <div class="video-content">
-                        <div class="video-category">${v.cat}</div>
-                        <h4 class="video-title">${v.title}</h4>
-                        <p class="video-meta">Formato: Vertical 9:16 • ${v.dur}</p>
-                        <button class="video-btn">Ver Prompt InVideo AI</button>
-                    </div>
-                `;
-                
-                grid.appendChild(card);
-            });
+        });
+
+        // Cargar tema guardado
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
         }
-        
-        // ============================================
-        // MODAL FUNCTIONS
-        // ============================================
-        function showPrompt(id) {
-            const video = videos.find(v => v.id === id);
-            document.getElementById('modalTitle').textContent = video.title;
-            document.getElementById('modalBody').textContent = video.prompt;
-            document.getElementById('modalPrompt').classList.add('show');
-        }
-        
-        function closeModal() {
-            document.getElementById('modalPrompt').classList.remove('show');
-        }
-        
-        function copyPrompt() {
-            const text = document.getElementById('modalBody').textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('✅ Prompt copiado al portapapeles!\n\nAhora ve a https://ai.invideo.io y pega el prompt para generar tu video.');
-            });
-        }
-        
-        // Cerrar modal al hacer click fuera
-        window.onclick = function(e) {
-            const modal = document.getElementById('modalPrompt');
-            if (e.target === modal) {
-                closeModal();
+
+        // ANIMACIONES DE SCROLL
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
-        
-        // Inicializar
-        renderVideos();
-    </script>
 
-    <!-- Google Analytics 4 (Reemplazar con ID real) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        window.addEventListener("scroll", reveal);
+        reveal(); // Ejecutar al cargar
     </script>
-
 </body>
 </html>
