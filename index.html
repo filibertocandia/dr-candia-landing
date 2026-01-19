@@ -38,7 +38,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        /* MODO OSCURO TOGGLE */
         #themeToggle {
             position: fixed;
             top: 20px;
@@ -53,7 +52,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* HEADER */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #001f33 100%);
             color: white;
@@ -78,7 +76,6 @@
         }
         .stat-number { font-size: 2rem; font-weight: 700; display: block; color: var(--accent); }
 
-        /* SECCIONES */
         section { padding: 80px 0; }
         .section-title { 
             text-align: center; 
@@ -98,7 +95,6 @@
             transform: translateX(-50%);
         }
 
-        /* GRID DE TARJETAS */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -152,7 +148,6 @@
         }
         .publication-link:hover { text-decoration: underline; }
 
-        /* AUDIO PLAYER */
         .audio-player {
             background: var(--bg-light);
             padding: 10px;
@@ -162,7 +157,6 @@
         .audio-label { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 5px; }
         audio { width: 100%; height: 35px; }
 
-        /* ANIMACIONES */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -194,13 +188,33 @@
             <div class="stats-grid">
                 <div class="stat-card"><span class="stat-number">105+</span><span>Publicaciones</span></div>
                 <div class="stat-card"><span class="stat-number">6</span><span>Patentes IMPI</span></div>
-                <div class="stat-card"><span class="stat-number">20+</span><span>Recursos Multimedia</span></div>
+                <div class="stat-card"><span class="stat-number">25+</span><span>Recursos Multimedia</span></div>
             </div>
         </div>
     </header>
 
+    <!-- SECCIÓN 2026 -->
+    <section id="y2026">
+        <div class="container">
+            <h2 class="section-title reveal">Investigación de Vanguardia 2026</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/cover_iot_telehealth.png" alt="IoT Telehealth"></div>
+                    <span class="badge">Telehealth & Medicine Today 2026</span>
+                    <h4>Cost-Effective IoT-Based Vital Sign Monitoring</h4>
+                    <p>Sistema de monitoreo de signos vitales de bajo costo basado en IoT para telemedicina asequible.</p>
+                    <a href="https://doi.org/10.30953/thmt.v10.611" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/audio_iot_telehealth.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN 2025 -->
-    <section id="y2025">
+    <section id="y2025" style="background: var(--bg-white);">
         <div class="container">
             <h2 class="section-title reveal">Producción Científica 2025</h2>
             <div class="grid">
@@ -224,6 +238,75 @@
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/jcr_audio_materials_pva.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PATENTES (6 COMPLETAS) -->
+    <section id="patents">
+        <div class="container">
+            <h2 class="section-title reveal">Patentes IMPI (Innovación Protegida)</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_ortesis.png" alt="Ortesis"></div>
+                    <span class="badge">Patente 2023</span>
+                    <h4>Ortesis Robótica Inteligente</h4>
+                    <p>Dispositivo para rehabilitación de mano con control de fuerza.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
+                    <span class="badge">Patente 2023</span>
+                    <h4>Modelo 3D Estructural</h4>
+                    <p>Sistema de predicción de fallas en edificios mediante modelos 3D.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica"></div>
+                    <span class="badge">Patente 2022</span>
+                    <h4>Torre Eólica con Volante</h4>
+                    <p>Generación de energía eficiente con almacenamiento inercial.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_trilladora.png" alt="Trilladora"></div>
+                    <span class="badge">Patente</span>
+                    <h4>Trilladora de Semilla de Alfalfa</h4>
+                    <p>Maquinaria especializada para la optimización de cosecha de alfalfa.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_trilladora.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_avena.png" alt="Avena"></div>
+                    <span class="badge">Patente</span>
+                    <h4>Proceso de Avena Instantánea</h4>
+                    <p>Innovación en el procesamiento de alimentos para consumo rápido.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_avena.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_cubicadora.png" alt="Cubicadora"></div>
+                    <span class="badge">Patente</span>
+                    <h4>Cubicadora de Alimentos</h4>
+                    <p>Sistema de corte y procesamiento industrial de alimentos.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_cubicadora.wav" type="audio/wav"></audio>
                     </div>
                 </div>
             </div>
@@ -314,7 +397,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2022-2018 -->
+    <!-- SECCIÓN HISTÓRICA -->
     <section id="historical" style="background: var(--bg-white);">
         <div class="container">
             <h2 class="section-title reveal">Trayectoria e Innovación (2018-2022)</h2>
@@ -367,45 +450,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN PATENTES -->
-    <section id="patents">
-        <div class="container">
-            <h2 class="section-title reveal">Patentes IMPI (Innovación Protegida)</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_ortesis.png" alt="Ortesis"></div>
-                    <span class="badge">Patente 2023</span>
-                    <h4>Ortesis Robótica Inteligente</h4>
-                    <p>Dispositivo para rehabilitación de mano con control de fuerza.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
-                    <span class="badge">Patente 2023</span>
-                    <h4>Modelo 3D Estructural</h4>
-                    <p>Sistema de predicción de fallas en edificios mediante modelos 3D.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica"></div>
-                    <span class="badge">Patente 2022</span>
-                    <h4>Torre Eólica con Volante</h4>
-                    <p>Generación de energía eficiente con almacenamiento inercial.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Dr. Filiberto Candia García | BUAP</p>
@@ -414,14 +458,12 @@
     </footer>
 
     <script>
-        // MODO OSCURO
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             themeToggle.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
 
-        // ANIMACIÓN REVEAL
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -434,7 +476,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Ejecutar al cargar
+        reveal();
     </script>
 </body>
 </html>
