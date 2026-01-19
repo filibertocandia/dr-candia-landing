@@ -3,164 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dr. Filiberto Candia García - Investigador SNII Nivel I, BUAP. 105 publicaciones, 6 patentes IMPI. Especialista en Mecánica de Sólidos, Tecnología Educativa e Innovación.">
-    <meta name="keywords" content="Filiberto Candia, SNII, BUAP, Ingeniería Mecánica, Patentes IMPI, Investigación, Tecnología Educativa">
-    <meta name="author" content="Dr. Filiberto Candia García">
-    
-    <title>Dr. Filiberto Candia García - Investigador SNII Nivel I | BUAP</title>
-    
+    <title>Dr. Filiberto Candia García | Divulgación Científica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #003366;
-            --secondary: #C8102E;
-            --accent: #FFB81C;
-            --bg-light: #f7fafc;
+            --primary: #003b5c; /* Azul BUAP */
+            --accent: #d4af37; /* Dorado Académico */
+            --bg-light: #f4f7f9;
             --bg-white: #ffffff;
             --text-dark: #1a1a1a;
-            --text-gray: #666666;
-            --shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --text-gray: #4a4a4a;
+            --transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] {
-            --primary: #3b82f6;
-            --secondary: #ef4444;
-            --accent: #fbbf24;
-            --bg-light: #0f172a;
-            --bg-white: #1e293b;
-            --text-dark: #f1f5f9;
-            --text-gray: #94a3b8;
-            --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+        .dark-mode {
+            --primary: #d4af37;
+            --accent: #ffffff;
+            --bg-light: #0a0a0a;
+            --bg-white: #1a1a1a;
+            --text-dark: #f4f7f9;
+            --text-gray: #a0a0a0;
         }
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg-light); 
             color: var(--text-dark);
-            background: var(--bg-light);
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        .theme-switch {
-            position: fixed; top: 20px; right: 20px; z-index: 1000;
-            background: var(--bg-white); border: 1px solid var(--primary);
-            padding: 10px; border-radius: 50%; cursor: pointer;
-            box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center;
+            line-height: 1.6;
             transition: var(--transition);
         }
-        .theme-switch:hover { transform: scale(1.1); }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #002244 100%);
-            color: white; padding: 120px 20px 80px; text-align: center;
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* MODO OSCURO TOGGLE */
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--primary);
+            color: var(--bg-white);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
-        .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; }
+
+        /* HEADER */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #001f33 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; }
+
         .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem; max-width: 1000px; margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
         .stat-card {
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
-        .stat-number { font-size: 3.5rem; font-weight: 700; color: var(--accent); display: block; }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 80px 20px; }
-        .section-title { text-align: center; color: var(--primary); font-size: 2.5rem; margin-bottom: 3rem; }
-        
-        .grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .stat-number { font-size: 2rem; font-weight: 700; display: block; color: var(--accent); }
+
+        /* SECCIONES */
+        section { padding: 80px 0; }
+        .section-title { 
+            text-align: center; 
+            font-size: 2.2rem; 
+            margin-bottom: 50px; 
+            position: relative;
+            color: var(--primary);
+        }
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* GRID DE TARJETAS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
         .card {
-            background: var(--bg-white); padding: 2rem; border-radius: 12px;
-            box-shadow: var(--shadow); transition: var(--transition);
-            display: flex; flex-direction: column;
+            background: var(--bg-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
         }
-        .card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
-        .card-media { margin: -2rem -2rem 1.5rem -2rem; border-radius: 12px 12px 0 0; overflow: hidden; height: 200px; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+        .card-media {
+            width: 100%;
+            height: 180px;
+            background: #eee;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
         .card-media img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .audio-player { margin-top: auto; padding-top: 1.5rem; }
-        .audio-player audio { width: 100%; height: 35px; }
-        .audio-label { font-size: 0.75rem; color: var(--text-gray); margin-bottom: 0.5rem; display: block; font-weight: 700; text-transform: uppercase; }
 
-        .badge { display: inline-block; padding: 0.4rem 0.8rem; background: var(--primary); color: white; border-radius: 6px; font-size: 0.85rem; margin-bottom: 1rem; width: fit-content; }
-        .publication-link { color: var(--secondary); text-decoration: none; font-weight: 700; margin-top: 1rem; display: inline-block; }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
 
-        footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; }
+        .card h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary); }
+        .card p { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 15px; flex-grow: 1; }
+
+        .publication-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .publication-link:hover { text-decoration: underline; }
+
+        /* AUDIO PLAYER */
+        .audio-player {
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: auto;
+        }
+        .audio-label { font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 5px; }
+        audio { width: 100%; height: 35px; }
+
+        /* ANIMACIONES */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <button class="theme-switch" id="themeToggle" title="Cambiar Tema">🌓</button>
+    <button id="themeToggle">🌙</button>
 
     <header class="hero">
-        <div class="hero-content">
+        <div class="container">
             <h1>Dr. Filiberto Candia García</h1>
             <p>Investigador SNII Nivel I | Benemérita Universidad Autónoma de Puebla</p>
             <div style="margin-top: 1.5rem;">
                 <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" class="badge" style="background: var(--accent); color: var(--primary); font-weight: bold; text-decoration: none; padding: 0.6rem 1.2rem;">📊 Ver Perfil en Google Scholar</a>
             </div>
             <div class="stats-grid">
-                <div class="stat-card"><span class="stat-number">105</span><span>Publicaciones</span></div>
+                <div class="stat-card"><span class="stat-number">105+</span><span>Publicaciones</span></div>
                 <div class="stat-card"><span class="stat-number">6</span><span>Patentes IMPI</span></div>
-                <div class="stat-card"><span class="stat-number">15</span><span>Audios de Divulgación</span></div>
+                <div class="stat-card"><span class="stat-number">20+</span><span>Recursos Multimedia</span></div>
             </div>
         </div>
     </header>
 
-    <!-- SECCIÓN INVESTIGACIÓN JCR (ALTO IMPACTO) -->
-    <section id="jcr" style="background: var(--bg-white);">
+    <!-- SECCIÓN 2025 -->
+    <section id="y2025">
         <div class="container">
-            <h2 class="section-title reveal">Investigación de Alto Impacto (JCR)</h2>
+            <h2 class="section-title reveal">Producción Científica 2025</h2>
             <div class="grid">
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/jcr_cover_aerospace.png" alt="Aerospace CubeSat"></div>
-                    <span class="badge">Aerospace (JCR)</span>
-                    <h4>Agile stage-gate approach for 1U CubeSat</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Metodología ágil para el diseño y prueba de satélites miniatura.</p>
-                    <a href="https://www.mdpi.com/2075-1702/11/4/324" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="card-media"><img src="media/ride_cover_tecnologia.png" alt="Tecnología"></div>
+                    <span class="badge">RIDE 2025</span>
+                    <h4>Tecnología Educativa y Productividad Académica</h4>
+                    <p>La Tecnología Educativa como detonador de la Productividad académica de alto impacto.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2574" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/jcr_audio_aerospace.wav" type="audio/wav"></audio>
+                        <audio controls><source src="media/ride_audio_tecnologia.wav" type="audio/wav"></audio>
                     </div>
                 </div>
                 <div class="card reveal">
                     <div class="card-media"><img src="media/jcr_cover_materials_pva.png" alt="Materials PVA/Cu"></div>
-                    <span class="badge">Materials (JCR)</span>
+                    <span class="badge">Materials (JCR) 2025</span>
                     <h4>PVA/Cu Nanocomposites for Flexible Electronics</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Propiedades estructurales y eléctricas para electrónica flexible.</p>
+                    <p>Propiedades estructurales y eléctricas para electrónica flexible.</p>
                     <a href="https://www.mdpi.com/1996-1944/18/9/2087" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/jcr_audio_materials_pva.wav" type="audio/wav"></audio>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2024 -->
+    <section id="y2024" style="background: var(--bg-white);">
+        <div class="container">
+            <h2 class="section-title reveal">Producción Científica 2024</h2>
+            <div class="grid">
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/jcr_cover_materials_photonic.png" alt="Materials Photonic"></div>
-                    <span class="badge">Materials (JCR)</span>
-                    <h4>1D Photonic Crystals with Magnetic Inclusions</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Teoría de homogeneización para el control de ondas electromagnéticas.</p>
-                    <a href="https://www.mdpi.com/1996-1944/13/6/1475" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="card-media"><img src="media/cover_salidas_laterales.png" alt="Salidas Laterales"></div>
+                    <span class="badge">Book Chapter 2024</span>
+                    <h4>Salidas laterales: Necesidad Urgente</h4>
+                    <p>Salidas laterales una necesidad urgente en la Educación Superior.</p>
+                    <a href="https://doi.org/10.58299/utp.173.c629" target="_blank" class="publication-link">Ver Capítulo de Libro →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/jcr_audio_materials_photonic.wav" type="audio/wav"></audio>
+                        <audio controls><source src="media/audio_salidas_laterales.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_curriculo.png" alt="Currículo"></div>
+                    <span class="badge">RIDE 2024</span>
+                    <h4>El Dilema Curricular: Inclusión</h4>
+                    <p>La exclusión o inclusión de asignaturas en los mapas curriculares.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2048" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_curriculo.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2023 -->
+    <section id="y2023">
+        <div class="container">
+            <h2 class="section-title reveal">Producción Científica 2023</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_covid.png" alt="COVID"></div>
+                    <span class="badge">RIDE 2023</span>
+                    <h4>Competencias Digitales Post-COVID</h4>
+                    <p>El estado de las Competencias Digitales Durante la Pandemia COVID-19.</p>
+                    <a href="https://mail.ride.org.mx/index.php/RIDE/article/view/1538" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_covid.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/cover_rea.png" alt="REA"></div>
+                    <span class="badge">Dialnet 2023</span>
+                    <h4>Recursos Educativos Abiertos (REA)</h4>
+                    <p>Los REA como medios didácticos y su aceptación por los estudiantes.</p>
+                    <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9849518" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/audio_rea.wav" type="audio/wav"></audio>
                     </div>
                 </div>
                 <div class="card reveal">
                     <div class="card-media"><img src="media/jcr_cover_materials_letters.png" alt="Materials Letters"></div>
-                    <span class="badge">Materials Letters (JCR)</span>
-                    <h4>Nanocrystal incrustation in pm-SiGe:H films</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Efecto de los nanocristales en la conductividad eléctrica a escala nano.</p>
+                    <span class="badge">Materials Letters (JCR) 2023</span>
+                    <h4>Nanocrystal incrustation in pm-SiGe:H</h4>
+                    <p>Efecto de los nanocristales en la conductividad eléctrica.</p>
                     <a href="https://doi.org/10.1016/j.matlet.2023.134346" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/jcr_audio_materials_letters.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_tecnologia.png" alt="E-learning"></div>
+                    <span class="badge">RIDE 2023</span>
+                    <h4>Planeación Académica E-learning</h4>
+                    <p>La planeación académica en los nuevos modelos curriculares e-learning.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1422" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_convertidor.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2022-2018 -->
+    <section id="historical" style="background: var(--bg-white);">
+        <div class="container">
+            <h2 class="section-title reveal">Trayectoria e Innovación (2018-2022)</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_laser.png" alt="Láser"></div>
+                    <span class="badge">Mecamex 2018</span>
+                    <h4>Sensor Láser de Alta Precisión</h4>
+                    <p>Desarrollo de sensores para medición de deformaciones.</p>
+                    <a href="https://www.mecamex.net/Libros/2018-Libro-Robotica-y-Mecatronica.pdf" target="_blank" class="publication-link">Ver Libro Completo →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_laser.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_vinculacion.png" alt="Vinculación"></div>
+                    <span class="badge">RIDE 2021</span>
+                    <h4>Innovación Educativa 2030</h4>
+                    <p>Estrategias para la innovación educativa en la educación superior.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/629" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_vinculacion.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_transformadores.png" alt="Impresión 3D"></div>
+                    <span class="badge">RIDE 2022</span>
+                    <h4>Impresión 3D en Educación</h4>
+                    <p>Integración de la impresión 3D en la educación tecnológica.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1170" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_transformadores.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_audio_solidos.wav" alt="Mecánica"></div>
+                    <span class="badge">RIDE 2018</span>
+                    <h4>Mecánica de Sólidos en Ingeniería</h4>
+                    <p>La mecánica de sólidos como unidad de competencia del currículo.</p>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/369" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/ride_audio_solidos.wav" type="audio/wav"></audio>
                     </div>
                 </div>
             </div>
@@ -170,232 +370,71 @@
     <!-- SECCIÓN PATENTES -->
     <section id="patents">
         <div class="container">
-            <h2 class="section-title reveal">Patentes e Innovación</h2>
+            <h2 class="section-title reveal">Patentes IMPI (Innovación Protegida)</h2>
             <div class="grid">
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
-                    <span class="badge">MX427157B</span>
-                    <h4>Modelo 3D: Respuesta Dinámica Estructural</h4>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
                     <div class="card-media"><img src="media/tiktok_cover_ortesis.png" alt="Ortesis"></div>
-                    <span class="badge">MX/a/2023/008361</span>
-                    <h4>Ortesis Inteligente de Agarre</h4>
+                    <span class="badge">Patente 2023</span>
+                    <h4>Ortesis Robótica Inteligente</h4>
+                    <p>Dispositivo para rehabilitación de mano con control de fuerza.</p>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
                     </div>
                 </div>
                 <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
+                    <span class="badge">Patente 2023</span>
+                    <h4>Modelo 3D Estructural</h4>
+                    <p>Sistema de predicción de fallas en edificios mediante modelos 3D.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
                     <div class="card-media"><img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica"></div>
-                    <span class="badge">MX/a/2021/015890</span>
-                    <h4>Torre Eólica con Volante de Inercia</h4>
+                    <span class="badge">Patente 2022</span>
+                    <h4>Torre Eólica con Volante</h4>
+                    <p>Generación de energía eficiente con almacenamiento inercial.</p>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
                     </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_trilladora.png" alt="Trilladora"></div>
-                    <span class="badge">MX/a/2022/011266</span>
-                    <h4>Trilladora de Semilla de Alfalfa</h4>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_trilladora.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_avena.png" alt="Avena"></div>
-                    <span class="badge">MX/a/2020/010347</span>
-                    <h4>Pastillas de Avena Instantánea</h4>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_avena.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_cubicadora.png" alt="Cubicadora"></div>
-                    <span class="badge">MX/a/2020/003169</span>
-                    <h4>Cubicadora de Alimentos Industrial</h4>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_cubicadora.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DIVULGACIÓN CIENTÍFICA (9 RIDE) -->
-    <section id="divulgacion" style="background: var(--bg-light);">
-        <div class="container">
-            <h2 class="section-title reveal">Divulgación Científica (Papers RIDE)</h2>
-            <div class="grid">
-                <!-- RIDE 1 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_tecnologia.png" alt="Tecnología"></div>
-                    <span class="badge">RIDE 2025</span>
-                    <h4>Tecnología y Productividad Académica</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2574" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_tecnologia.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 2 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_curriculo.png" alt="Currículo"></div>
-                    <span class="badge">RIDE 2024</span>
-                    <h4>El Dilema Curricular: Inclusión</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2048" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_curriculo.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 3 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_covid.png" alt="COVID"></div>
-                    <span class="badge">RIDE 2023</span>
-                    <h4>Competencias Digitales Post-COVID</h4>
-                    <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9849518" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_covid.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 4 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_vocacion.png" alt="Vocación"></div>
-                    <span class="badge">RIDE 2020</span>
-                    <h4>Vocación Profesional en Ingeniería</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/629" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_vocacion.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 5 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_vinculacion.png" alt="Vinculación"></div>
-                    <span class="badge">ANFEI 2019</span>
-                    <h4>Vinculación Universidad-Empresa</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/issue/view/23" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_vinculacion.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 6 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_transformadores.png" alt="Transformadores"></div>
-                    <span class="badge">MDI 2018</span>
-                    <h4>Eficiencia en Transformadores Eléctricos</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/369" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_transformadores.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 7 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_soberania.png" alt="Soberanía"></div>
-                    <span class="badge">CENID 2015</span>
-                    <h4>Democracia y Soberanía Tecnológica</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1422" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_soberania.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 8 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_laser.png" alt="Láser"></div>
-                    <span class="badge">BUAP 2017</span>
-                    <h4>Sensor Láser de Alta Precisión</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1170" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_laser.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <!-- RIDE 9 -->
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_libertad.png" alt="Libertad"></div>
-                    <span class="badge">RIDE 2019</span>
-                    <h4>Filosofía de Libertad y Educación</h4>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1170" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_libertad.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN IMPACTO ACADÉMICO -->
-    <section id="impacto">
-        <div class="container">
-            <h2 class="section-title reveal">Impacto Académico</h2>
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="card reveal" style="text-align:center">
-                    <div style="font-size:4rem;margin-bottom:1rem">📚</div>
-                    <div style="font-size:3rem;font-weight:bold;color:var(--primary)">105+</div>
-                    <p>Publicaciones Científicas</p>
-                </div>
-                <div class="card reveal" style="text-align:center">
-                    <div style="font-size:4rem;margin-bottom:1rem">🎓</div>
-                    <div style="font-size:3rem;font-weight:bold;color:var(--primary)">500+</div>
-                    <p>Estudiantes Formados</p>
-                </div>
-                <div class="card reveal" style="text-align:center">
-                    <div style="font-size:4rem;margin-bottom:1rem">💡</div>
-                    <div style="font-size:3rem;font-weight:bold;color:var(--primary)">6</div>
-                    <p>Patentes Registradas</p>
-                </div>
-                <div class="card reveal" style="text-align:center">
-                    <div style="font-size:4rem;margin-bottom:1rem">🇲🇽</div>
-                    <div style="font-size:3rem;font-weight:bold;color:var(--primary)">SNII</div>
-                    <p>Nivel I - CONACYT</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Dr. Filiberto Candia García | BUAP</p>
-        <p style="margin-top: 10px;"><a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consultar todas las publicaciones en Google Académico →</a></p>
+        <div class="container">
+            <p>&copy; 2026 Dr. Filiberto Candia García | BUAP</p>
+            <p style="margin-top: 10px;"><a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consultar todas las publicaciones en Google Académico →</a></p>
+        </div>
     </footer>
 
     <script>
+        // MODO OSCURO
         const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
         themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            document.body.classList.toggle('dark-mode');
+            themeToggle.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
-        if (localStorage.getItem('theme') === 'dark') body.setAttribute('data-theme', 'dark');
 
+        // ANIMACIÓN REVEAL
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) reveals[i].classList.add("active");
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        reveal(); // Ejecutar al cargar
     </script>
 </body>
 </html>
