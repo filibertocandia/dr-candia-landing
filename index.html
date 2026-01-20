@@ -140,13 +140,21 @@
 
         .publication-link {
             display: inline-block;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             color: var(--accent);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
         }
         .publication-link:hover { text-decoration: underline; }
+
+        .doi-label {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-family: monospace;
+            margin-bottom: 15px;
+            display: block;
+        }
 
         .audio-player {
             background: var(--bg-light);
@@ -160,6 +168,22 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        .thesis-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--bg-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .thesis-table th, .thesis-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-light);
+        }
+        .thesis-table th { background: var(--primary); color: white; }
+
         footer {
             background: var(--primary);
             color: white;
@@ -171,6 +195,7 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .grid { grid-template-columns: 1fr; }
+            .thesis-table { display: block; overflow-x: auto; }
         }
     </style>
 </head>
@@ -182,8 +207,9 @@
         <div class="container">
             <h1>Dr. Filiberto Candia García</h1>
             <p>Investigador SNII Nivel I | Benemérita Universidad Autónoma de Puebla</p>
-            <div style="margin-top: 1.5rem;">
-                <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" class="badge" style="background: var(--accent); color: var(--primary); font-weight: bold; text-decoration: none; padding: 0.6rem 1.2rem;">📊 Ver Perfil en Google Scholar</a>
+            <div style="margin-top: 1.5rem; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" class="badge" style="background: var(--accent); color: var(--primary); font-weight: bold; text-decoration: none; padding: 0.6rem 1.2rem;">📊 Google Scholar</a>
+                <a href="https://orcid.org/0000-0002-4545-0466" target="_blank" class="badge" style="background: #a6ce39; color: white; font-weight: bold; text-decoration: none; padding: 0.6rem 1.2rem;">🆔 ORCID: 0000-0002-4545-0466</a>
             </div>
             <div class="stats-grid">
                 <div class="stat-card"><span class="stat-number">105+</span><span>Publicaciones</span></div>
@@ -193,21 +219,20 @@
         </div>
     </header>
 
-
-
     <!-- SECCIÓN 2025 -->
     <section id="y2025" style="background: var(--bg-white);">
         <div class="container">
             <h2 class="section-title reveal">Producción Científica 2025</h2>
             
             <!-- DESTACADO DE ALTO IMPACTO -->
-            <div class="card reveal" style="border: 2px solid var(--accent-gold); margin-bottom: 3rem; background: linear-gradient(145deg, #ffffff, #f9f9f9);">
+            <div class="card reveal" style="border: 2px solid var(--accent); margin-bottom: 3rem; background: linear-gradient(145deg, var(--bg-white), var(--bg-light));">
                 <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
                     <div class="card-media" style="margin: 0;"><img src="media/jcr_impact_2025.png" alt="High Impact 2025"></div>
                     <div>
-                        <span class="badge" style="background: var(--accent-gold); color: var(--primary-blue);">⭐ RECONOCIMIENTO DE ALTO IMPACTO 2025</span>
-                        <h3 style="color: var(--primary-blue); margin: 1rem 0;">Investigación Citada Globalmente</h3>
-                        <p>El artículo sobre <strong>PVA/Cu Nanocomposites</strong> en la revista <strong>Materials (Q1)</strong> ha sido identificado como una de las publicaciones más influyentes del Dr. Candia en este inicio de 2025, recibiendo citas de la comunidad científica internacional.</p>
+                        <span class="badge" style="background: var(--accent); color: var(--primary);">⭐ RECONOCIMIENTO DE ALTO IMPACTO 2025</span>
+                        <h3 style="color: var(--primary); margin: 1rem 0;">Investigación Citada Globalmente</h3>
+                        <p>El artículo sobre <strong>PVA/Cu Nanocomposites</strong> en la revista <strong>Materials (Q1)</strong> ha sido identificado como una de las publicaciones más influyentes del Dr. Candia en este inicio de 2025.</p>
+                        <span class="doi-label">DOI: 10.3390/ma18010123</span>
                         <div class="audio-player" style="margin-top: 1.5rem;">
                             <span class="audio-label">🔊 Escuchar Impacto 2025</span>
                             <audio controls><source src="media/audio_impact_2025.wav" type="audio/wav"></audio>
@@ -222,101 +247,11 @@
                     <span class="badge">RIDE 2025</span>
                     <h4>Tecnología Educativa y Productividad Académica</h4>
                     <p>La Tecnología Educativa como detonador de la Productividad académica de alto impacto.</p>
+                    <span class="doi-label">DOI: 10.23913/ride.v15i29.2574</span>
                     <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2574" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
                         <audio controls><source src="media/ride_audio_tecnologia.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/jcr_cover_aerospace.png" alt="Aerospace"></div>
-                    <span class="badge">Aerospace (JCR) 2024</span>
-                    <h4>Structural Design of a 1U CubeSat</h4>
-                    <p>Diseño y análisis estructural de un satélite CubeSat.</p>
-                    <a href="https://www.mdpi.com/2226-4310/11/4/324" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/jcr_audio_aerospace.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_agile_cubesat.png" alt="Agile CubeSat"></div>
-                    <span class="badge">Aerospace (JCR) 2024</span>
-                    <h4>Agile stage-gate approach for 1U CubeSat</h4>
-                    <p>Enfoque ágil para el diseño, integración y pruebas de satélites CubeSat.</p>
-                    <a href="https://www.mdpi.com/2226-4310/11/4/324" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/audio_agile_cubesat.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PATENTES (6 COMPLETAS) -->
-    <section id="patents">
-        <div class="container">
-            <h2 class="section-title reveal">Patentes IMPI (Innovación Protegida)</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_ortesis.png" alt="Ortesis"></div>
-                    <span class="badge">Patente 2023</span>
-                    <h4>Ortesis Robótica Inteligente</h4>
-                    <p>Dispositivo para rehabilitación de mano con control de fuerza.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
-                    <span class="badge">Patente 2023</span>
-                    <h4>Modelo 3D Estructural</h4>
-                    <p>Sistema de predicción de fallas en edificios mediante modelos 3D.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica"></div>
-                    <span class="badge">Patente 2022</span>
-                    <h4>Torre Eólica con Volante</h4>
-                    <p>Generación de energía eficiente con almacenamiento inercial.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_trilladora.png" alt="Trilladora"></div>
-                    <span class="badge">Patente</span>
-                    <h4>Trilladora de Semilla de Alfalfa</h4>
-                    <p>Maquinaria especializada para la optimización de cosecha de alfalfa.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_trilladora.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_avena.png" alt="Avena"></div>
-                    <span class="badge">Patente</span>
-                    <h4>Proceso de Avena Instantánea</h4>
-                    <p>Innovación en el procesamiento de alimentos para consumo rápido.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_avena.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/tiktok_cover_cubicadora.png" alt="Cubicadora"></div>
-                    <span class="badge">Patente</span>
-                    <h4>Cubicadora de Alimentos</h4>
-                    <p>Sistema de corte y procesamiento industrial de alimentos.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/tiktok_audio_cubicadora.wav" type="audio/wav"></audio>
                     </div>
                 </div>
             </div>
@@ -324,15 +259,16 @@
     </section>
 
     <!-- SECCIÓN 2024 -->
-    <section id="y2024" style="background: var(--bg-white);">
+    <section id="y2024">
         <div class="container">
             <h2 class="section-title reveal">Producción Científica 2024</h2>
             <div class="grid">
                 <div class="card reveal">
                     <div class="card-media"><img src="media/cover_salidas_laterales.png" alt="Salidas Laterales"></div>
-                    <span class="badge">Book Chapter 2024</span>
-                    <h4>Salidas laterales: Necesidad Urgente</h4>
-                    <p>Salidas laterales una necesidad urgente en la Educación Superior.</p>
+                    <span class="badge">Capítulo de Libro 2024</span>
+                    <h4>Salidas laterales una necesidad urgente en la Educación Superior</h4>
+                    <p>Análisis de la flexibilidad curricular y la necesidad de salidas laterales para reducir la deserción en ingeniería.</p>
+                    <span class="doi-label">DOI: 10.58299/utp.173.c629</span>
                     <a href="https://doi.org/10.58299/utp.173.c629" target="_blank" class="publication-link">Ver Capítulo de Libro →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
@@ -340,10 +276,23 @@
                     </div>
                 </div>
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_curriculo.png" alt="Currículo"></div>
+                    <div class="card-media"><img src="media/cover_agile_cubesat.png" alt="Agile CubeSat"></div>
+                    <span class="badge">Aerospace (JCR) 2024</span>
+                    <h4>Agile stage-gate approach for 1U CubeSat</h4>
+                    <p>Enfoque ágil para el diseño, integración y pruebas de satélites CubeSat.</p>
+                    <span class="doi-label">DOI: 10.3390/aerospace11040324</span>
+                    <a href="https://www.mdpi.com/2226-4310/11/4/324" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/audio_agile_cubesat.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_curriculo.png" alt="Dilema Curricular"></div>
                     <span class="badge">RIDE 2024</span>
-                    <h4>El Dilema Curricular: Inclusión</h4>
-                    <p>La exclusión o inclusión de asignaturas en los mapas curriculares.</p>
+                    <h4>Exclusión vs Inclusión: El Dilema Curricular</h4>
+                    <p>Análisis de la pertinencia de los planes de estudio y la necesidad de un currículo inclusivo.</p>
+                    <span class="doi-label">DOI: 10.23913/ride.v14i28.2048</span>
                     <a href="https://www.ride.org.mx/index.php/RIDE/article/view/2048" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
@@ -355,15 +304,16 @@
     </section>
 
     <!-- SECCIÓN 2023 -->
-    <section id="y2023">
+    <section id="y2023" style="background: var(--bg-white);">
         <div class="container">
             <h2 class="section-title reveal">Producción Científica 2023</h2>
             <div class="grid">
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_covid.png" alt="COVID"></div>
+                    <div class="card-media"><img src="media/ride_cover_covid.png" alt="Post-COVID"></div>
                     <span class="badge">RIDE 2023</span>
                     <h4>Competencias Digitales Post-COVID</h4>
                     <p>El estado de las Competencias Digitales Durante la Pandemia COVID-19.</p>
+                    <span class="doi-label">DOI: 10.23913/ride.v13i26.1538</span>
                     <a href="https://mail.ride.org.mx/index.php/RIDE/article/view/1538" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
@@ -371,74 +321,11 @@
                     </div>
                 </div>
                 <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_rea.png" alt="REA"></div>
-                    <span class="badge">Dialnet 2023</span>
-                    <h4>Recursos Educativos Abiertos (REA)</h4>
-                    <p>Los REA como medios didácticos y su aceptación por los estudiantes.</p>
-                    <a href="https://dialnet.unirioja.es/servlet/articulo?codigo=9849518" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/audio_rea.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/jcr_cover_materials_letters.png" alt="Materials Letters"></div>
-                    <span class="badge">Materials Letters (JCR) 2023</span>
-                    <h4>Nanocrystal incrustation in pm-SiGe:H</h4>
-                    <p>Efecto de los nanocristales en la conductividad eléctrica.</p>
-                    <a href="https://doi.org/10.1016/j.matlet.2023.134346" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/jcr_audio_materials_letters.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_tecnologia.png" alt="E-learning"></div>
+                    <div class="card-media"><img src="media/cover_impresion_3d_v2.png" alt="Impresión 3D"></div>
                     <span class="badge">RIDE 2023</span>
-                    <h4>Planeación Académica E-learning</h4>
-                    <p>La planeación académica en los nuevos modelos curriculares e-learning.</p>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1422" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_convertidor.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN HISTÓRICA -->
-    <section id="historical" style="background: var(--bg-white);">
-        <div class="container">
-            <h2 class="section-title reveal">Trayectoria e Innovación (2018-2022)</h2>
-            <div class="grid">
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/ride_cover_laser.png" alt="Láser"></div>
-                    <span class="badge">Mecamex 2018</span>
-                    <h4>Sensor Láser de Alta Precisión</h4>
-                    <p>Desarrollo de sensores para medición de deformaciones.</p>
-                    <a href="https://www.mecamex.net/Libros/2018-Libro-Robotica-y-Mecatronica.pdf" target="_blank" class="publication-link">Ver Libro Completo →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_laser.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_innovacion_2030_v2.png" alt="Innovación Educativa 2030"></div>
-                    <span class="badge">RIDE</span>
-                    <h4>Vinculación Universidad-Empresa. Estrategias para la innovación educativa en la educación superior hacia el 2030</h4>
-                    <p>Estrategias para la innovación educativa en la educación superior hacia el 2030.</p>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/629" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/audio_innovacion_2030_v2.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_impresion_3d_v2.png" alt="Impresión 3D en Educación"></div>
-                    <span class="badge">RIDE</span>
                     <h4>Integración de la impresión 3D en la educación tecnológica</h4>
-                    <p>Análisis de la integración de la manufactura aditiva en planes de estudio.</p>
+                    <p>Estrategias para la incorporación de la manufactura aditiva.</p>
+                    <span class="doi-label">DOI: 10.23913/ride.v12i23.1170</span>
                     <a href="https://www.ride.org.mx/index.php/RIDE/article/view/1170" target="_blank" class="publication-link">Ver Artículo Original →</a>
                     <div class="audio-player">
                         <span class="audio-label">🔊 Escuchar Divulgación</span>
@@ -446,35 +333,167 @@
                     </div>
                 </div>
                 <div class="card reveal">
+                    <div class="card-media"><img src="media/cover_innovacion_2030_v2.png" alt="Innovación 2030"></div>
+                    <span class="badge">RIDE 2023</span>
+                    <h4>Innovación Educativa 2030</h4>
+                    <p>Vinculación Universidad-Empresa. Estrategias para la innovación educativa.</p>
+                    <span class="doi-label">DOI: 10.23913/ride.v11i21.629</span>
+                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/629" target="_blank" class="publication-link">Ver Artículo Original →</a>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Divulgación</span>
+                        <audio controls><source src="media/audio_innovacion_2030_v2.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN FORMACIÓN DE RECURSOS HUMANOS (TESIS) -->
+    <section id="tesis">
+        <div class="container">
+            <h2 class="section-title reveal">Formación de Recursos Humanos (Tesis Dirigidas)</h2>
+            <p class="reveal" style="text-align: center; margin-bottom: 30px;">Evidencia de dirección y asesoría de trabajos de titulación en la BUAP.</p>
+            <table class="thesis-table reveal">
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Nivel</th>
+                        <th>Año</th>
+                        <th>Título del Trabajo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sánchez Rodríguez, Pablo César</td>
+                        <td>Maestría</td>
+                        <td>2023</td>
+                        <td>Normativa de Puebla y normativa ASCE análisis de nave industrial por sismo/viento</td>
+                    </tr>
+                    <tr>
+                        <td>Benítez Cruz, Gerardo Alan</td>
+                        <td>Licenciatura</td>
+                        <td>2022</td>
+                        <td>Interfaz para monitoreo de vibraciones mecánicas con 4 sensores MPU6050 y MATLAB</td>
+                    </tr>
+                    <tr>
+                        <td>Ramos González, José Roberto</td>
+                        <td>Licenciatura</td>
+                        <td>2021</td>
+                        <td>Paquete didáctico para la enseñanza de la asignatura de mecánica de sólidos</td>
+                    </tr>
+                    <tr>
+                        <td>Aguilar Romero, Mauro Alberto</td>
+                        <td>Licenciatura</td>
+                        <td>2017</td>
+                        <td>Optimización del área de influencia eléctrica de una subestación de distribución</td>
+                    </tr>
+                    <tr>
+                        <td>Solís Salazar, Oscar</td>
+                        <td>Licenciatura</td>
+                        <td>2014</td>
+                        <td>Diseño de Álabe de aero-generador mediante el método de elemento finito</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PATENTES IMPI -->
+    <section id="patentes" style="background: var(--bg-white);">
+        <div class="container">
+            <h2 class="section-title reveal">Patentes IMPI (6/6)</h2>
+            <div class="grid">
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_ortesis.png" alt="Ortesis"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Ortesis Inteligente para Rehabilitación</h4>
+                    <p>Dispositivo tipo pistola para el fortalecimiento de la pinza de agarre tridimensional.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_ortesis.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_3d_model.png" alt="Modelo 3D"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Modelo 3D de Ingeniería Estructural</h4>
+                    <p>Modelo impreso en 3D para el análisis de ingeniería estructural.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_modelo_3d.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_torre_eolica.png" alt="Torre Eólica"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Torre Eólica con Volante de Inercia</h4>
+                    <p>Diseño de torre eólica con sistema de almacenamiento de energía cinética.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_torre_eolica.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_trilladora.png" alt="Trilladora"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Trilladora de Alfalfa de Alto Rendimiento</h4>
+                    <p>Máquina agrícola diseñada para la separación eficiente de semillas de alfalfa.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_trilladora.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_avena.png" alt="Avena"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Proceso para Avena Instantánea</h4>
+                    <p>Método innovador para la producción de avena instantánea.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_avena.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/tiktok_cover_cubicadora.png" alt="Cubicadora"></div>
+                    <span class="badge">Patente IMPI</span>
+                    <h4>Cubicadora de Alimentos</h4>
+                    <p>Dispositivo para el corte uniforme de alimentos.</p>
+                    <div class="audio-player">
+                        <span class="audio-label">🔊 Escuchar Innovación</span>
+                        <audio controls><source src="media/tiktok_audio_cubicadora.wav" type="audio/wav"></audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN LIBROS Y CAPÍTULOS -->
+    <section id="libros">
+        <div class="container">
+            <h2 class="section-title reveal">Libros y Capítulos de Investigación</h2>
+            <div class="grid">
+                <div class="card reveal">
                     <div class="card-media"><img src="media/cover_mecanica_solidos_v2.png" alt="Mecánica de Sólidos"></div>
-                    <span class="badge">RIDE 2018</span>
+                    <span class="badge">Libro 2022</span>
+                    <h4>Diseño y Planeación Mecatrónica</h4>
+                    <p>Texto fundamental para la formación de ingenieros en el área de mecatrónica.</p>
+                    <span class="doi-label">ISBN: 978-607-553-241-7</span>
+                    <a href="http://www.mecamex.net/Libros/2022-Libro-Diseno-y-Planeacion-Mecatronica.pdf" target="_blank" class="publication-link">Ver Libro Completo →</a>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/ride_cover_vocacion.png" alt="Eficiencia Terminal"></div>
+                    <span class="badge">Libro 2012</span>
+                    <h4>Eficiencia terminal y calidad en proyectos de titulación</h4>
+                    <p>Estudio sobre los factores que influyen en la titulación de estudiantes de ingeniería.</p>
+                    <span class="doi-label">ISBN: 978-3846579183</span>
+                    <a href="https://www.amazon.com/-/es/Eficiencia-terminal-calidad-proyectos-titulaci%C3%B3n/dp/3846579181" target="_blank" class="publication-link">Ver en Amazon →</a>
+                </div>
+                <div class="card reveal">
+                    <div class="card-media"><img src="media/cover_mecanica_solidos_v2.png" alt="Mecánica de Sólidos"></div>
+                    <span class="badge">Capítulo de Libro 2018</span>
                     <h4>Mecánica de Sólidos en Ingeniería</h4>
-                    <p>La mecánica de sólidos como unidad de competencia del currículo.</p>
-                    <a href="https://www.ride.org.mx/index.php/RIDE/article/view/369" target="_blank" class="publication-link">Ver Artículo Original →</a>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/ride_audio_solidos.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_arduino_simulink.png" alt="Arduino Simulink"></div>
-                    <span class="badge">SOMIM 2020</span>
-                    <h4>Interfaz Arduino-Simulink MPU6050</h4>
-                    <p>Medición en paralelo de dos sensores inerciales para sistemas mecatrónicos.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/audio_arduino_simulink.wav" type="audio/wav"></audio>
-                    </div>
-                </div>
-                <div class="card reveal">
-                    <div class="card-media"><img src="media/cover_kbes_design.png" alt="KBES Design"></div>
-                    <span class="badge">IJCAR 2016</span>
-                    <h4>KBES for Mechanic Design</h4>
-                    <p>Sistema de ingeniería basado en el conocimiento para actividades de diseño mecánico.</p>
-                    <div class="audio-player">
-                        <span class="audio-label">🔊 Escuchar Divulgación</span>
-                        <audio controls><source src="media/audio_kbes_design.wav" type="audio/wav"></audio>
-                    </div>
+                    <p>Análisis de la mecánica de sólidos como unidad de competencia del currículo.</p>
+                    <a href="https://www.mecamex.net/Libros/2018-Libro-Robotica-y-Mecatronica.pdf" target="_blank" class="publication-link">Ver Capítulo →</a>
                 </div>
             </div>
         </div>
@@ -482,18 +501,23 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Dr. Filiberto Candia García | BUAP</p>
-            <p style="margin-top: 10px;"><a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Consultar todas las publicaciones en Google Académico →</a></p>
+            <p>&copy; 2025 Dr. Filiberto Candia García. Todos los derechos reservados.</p>
+            <p>Sitio desarrollado para la divulgación científica y el acceso universal al conocimiento.</p>
+            <div style="margin-top: 15px;">
+                <a href="https://scholar.google.com/citations?user=xKa-ixAAAAAJ&hl=es" target="_blank" style="color: white; text-decoration: none; margin: 0 10px;">Google Scholar</a> |
+                <a href="https://orcid.org/0000-0002-4545-0466" target="_blank" style="color: white; text-decoration: none; margin: 0 10px;">ORCID</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
-            themeToggle.innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
         });
 
+        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -502,11 +526,13 @@
                 var elementVisible = 150;
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        reveal(); // Initial check
     </script>
 </body>
 </html>
