@@ -202,6 +202,26 @@
 <body>
 
     <button id="themeToggle">🌙</button>
+    
+    <!-- CONTADOR DE VISUALIZACIONES -->
+    <div id="viewsCounter" style="position: fixed; top: 20px; left: 20px; z-index: 999; background: rgba(0, 59, 92, 0.9); color: white; padding: 12px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.3s ease;" title="Haz clic para reiniciar el contador">
+        <span style="font-size: 1.2rem;">📈</span>
+        <span id="viewsNumber">0</span>
+        <span>visualizaciones</span>
+    </div>
+    
+    <!-- MODAL DE CONFIRMACIÓN PARA REINICIO -->
+    <div id="resetModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 3000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 40px; border-radius: 15px; text-align: center; max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <h3 style="color: #003b5c; margin-bottom: 15px; font-size: 1.3rem;">⚠️ Reiniciar Contador</h3>
+            <p style="color: #666; margin-bottom: 25px; line-height: 1.6;">¿Deseas reiniciar el contador de visualizaciones a cero? Esta acción no se puede deshacer.</p>
+            <p style="color: #999; font-size: 0.9rem; margin-bottom: 25px;">Por favor, confirma dos veces para reiniciar.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button id="resetConfirmBtn" style="background: #ff6b6b; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;" onmouseover="this.style.background='#ff5252'" onmouseout="this.style.background='#ff6b6b'">Confirmar Reinicio</button>
+                <button id="resetCancelBtn" style="background: #e0e0e0; color: #333; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;" onmouseover="this.style.background='#d0d0d0'" onmouseout="this.style.background='#e0e0e0'">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <header class="hero">
         <div class="container">
@@ -754,6 +774,73 @@
         document.getElementById('metricsBtn').addEventListener('click', function() {
             evaluador.mostrarEvaluacion();
         });
+
+        // SISTEMA DE CONTABILIZACIÓN DE VISUALIZACIONES
+        class ContadorVisualizaciones {
+            constructor() {
+                this.storageKey = 'landing_page_views';
+                this.inicializar();
+            }
+
+            inicializar() {
+                this.incrementarContador();
+                this.actualizarUI();
+                this.configurarEventos();
+            }
+
+            incrementarContador() {
+                let views = this.obtenerVisualizaciones();
+                views++;
+                localStorage.setItem(this.storageKey, views);
+            }
+
+            obtenerVisualizaciones() {
+                const views = localStorage.getItem(this.storageKey);
+                return views ? parseInt(views) : 0;
+            }
+
+            actualizarUI() {
+                const views = this.obtenerVisualizaciones();
+                document.getElementById('viewsNumber').textContent = views.toLocaleString('es-MX');
+            }
+
+            configurarEventos() {
+                const counter = document.getElementById('viewsCounter');
+                const modal = document.getElementById('resetModal');
+                const confirmBtn = document.getElementById('resetConfirmBtn');
+                const cancelBtn = document.getElementById('resetCancelBtn');
+                let primerClick = false;
+
+                counter.addEventListener('click', () => {
+                    if (!primerClick) {
+                        primerClick = true;
+                        modal.style.display = 'flex';
+                        setTimeout(() => { primerClick = false; }, 5000);
+                    }
+                });
+
+                confirmBtn.addEventListener('click', () => {
+                    localStorage.setItem(this.storageKey, 0);
+                    this.actualizarUI();
+                    modal.style.display = 'none';
+                    alert('Contador reiniciado a 0 visualizaciones');
+                });
+
+                cancelBtn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                    primerClick = false;
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        primerClick = false;
+                    }
+                });
+            }
+        }
+
+        const contador = new ContadorVisualizaciones();
     </script>
 </body>
 </html>
